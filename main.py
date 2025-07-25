@@ -1,4 +1,4 @@
-from src.data.loader import load_match_data
+from src.data_loader.loader import load_match_data
 
 wm_data = load_match_data()
 
