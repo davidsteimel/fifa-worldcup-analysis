@@ -1,17 +1,10 @@
 from src.data_loader.loader import load_match_data
-from src.processing.engineer_features import create_features
 from src.visualization.plots import plot_goal_distribution, plot_outcome_distribution
+from src.processing.engineer_features import create_team_profiles, create_correlation_matrix
 
 wm_data = load_match_data()
 
-row_count, column_count = wm_data.shape
+team_profiles = create_team_profiles(wm_data)
+corr_matrix = create_correlation_matrix(team_profiles)
 
-nan_count = wm_data.isna().sum()
-
-print(f"Die Daten enthalten {row_count} Zeilen und {column_count} Spalten.")
-
-processed_df = create_features(wm_data)
-
-# 3. Die neue Plot-Funktion aufrufen und ihr den bearbeiteten DataFrame übergeben
-plot_goal_distribution(processed_df)
-plot_outcome_distribution(processed_df)
+print(corr_matrix['points'].sort_values(ascending=False))
