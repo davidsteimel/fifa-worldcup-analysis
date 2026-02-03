@@ -1,12 +1,10 @@
 import pandas as pd
 
-def load_match_data():
-    """Die Daten werden geladen."""
-    
+def load_match_data() -> pd.DataFrame:
     file_path = 'data/Fifa_world_cup_matches.csv'
     
     try:
-        df = pd.read_csv(file_path, )
+        df = pd.read_csv(file_path)
         print("Daten erfolgreich geladen!")
         return df
     except FileNotFoundError:
